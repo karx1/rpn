@@ -79,15 +79,21 @@ int main() {
             break;
         }
         
-        char* pch;
+        char* token;
 
-        pch = strtok(line, " ");
-        while (pch != NULL) {
-            printf("%s\n", pch);
-            pch = strtok(NULL, " ");
+        token = strtok(line, " ");
+        while (token != NULL) {
+            printf("%s\n", token);
+            if (strcmp(token, "+") == 0) {
+                int a = pop(&s);
+                int b = pop(&s);
+                push(&s, a + b);
+            }
+            token = strtok(NULL, " ");
         }
     }
 
+    printf("%d\n", pop(&s));
     stack_free(&s);
     free(line);
     return 0;
