@@ -88,6 +88,10 @@ int main() {
                 int a = pop(&s);
                 int b = pop(&s);
                 push(&s, a + b);
+            } else if (strcmp(token, "*") == 0) {
+                int a = pop(&s);
+                int b = pop(&s);
+                push(&s, a * b);
             }
             token = strtok(NULL, " ");
         }
