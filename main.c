@@ -60,6 +60,10 @@ long pop(Stack* s) {
     return val;
 }
 
+long peek(Stack* s) {
+    return s->ptr[s->size - 1];
+}
+
 void stack_free(Stack* s) {
     free(s->ptr);
 }
@@ -68,9 +72,6 @@ int main() {
     char* line = NULL;
 
     Stack s = create_stack();
-    /* push(&s, 3);
-    push(&s, 4);
-    printf("%d %d\n", s.ptr[0], s.ptr[1]); */
     
     while (1) {
         printf("Enter a line:\n");
@@ -110,6 +111,7 @@ int main() {
                     push(&s, num);
                 }
             }
+            printf("%zu\n", peek(&s));
             token = strtok(NULL, " ");
         }
     }
