@@ -68,8 +68,8 @@ int main() {
     char* line = NULL;
 
     Stack s = create_stack();
-    push(&s, 1);
-    push(&s, 1);
+    push(&s, 3);
+    push(&s, 4);
     printf("%d %d\n", s.ptr[0], s.ptr[1]);
     
     while (1) {
@@ -92,6 +92,14 @@ int main() {
                 int a = pop(&s);
                 int b = pop(&s);
                 push(&s, a * b);
+            } else if (strcmp(token, "-") == 0) {
+                int b = pop(&s);
+                int a = pop(&s);
+                push(&s, a - b);
+            } else if (strcmp(token, "/") == 0) {
+                int b = pop(&s);
+                int a = pop(&s);
+                push(&s, a / b);
             }
             token = strtok(NULL, " ");
         }
