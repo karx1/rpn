@@ -74,7 +74,7 @@ int main() {
     Stack s = create_stack();
     
     while (1) {
-        printf("Enter a line:\n");
+        printf(">> ");
         line = gline();
         if (strcmp(line, "done") == 0) {
             break;
@@ -84,39 +84,39 @@ int main() {
 
         token = strtok(line, " ");
         while (token != NULL) {
-            printf("%s\n", token);
+            /* printf("%s\n", token); */
             if (strcmp(token, "+") == 0) {
-                int a = pop(&s);
-                int b = pop(&s);
+                long a = pop(&s);
+                long b = pop(&s);
                 push(&s, a + b);
             } else if (strcmp(token, "*") == 0) {
-                int a = pop(&s);
-                int b = pop(&s);
+                long a = pop(&s);
+                long b = pop(&s);
                 push(&s, a * b);
             } else if (strcmp(token, "-") == 0) {
-                int b = pop(&s);
-                int a = pop(&s);
+                long b = pop(&s);
+                long a = pop(&s);
                 push(&s, a - b);
             } else if (strcmp(token, "/") == 0) {
-                int b = pop(&s);
-                int a = pop(&s);
+                long b = pop(&s);
+                long a = pop(&s);
                 push(&s, a / b);
             } else {
                 char* endptr;
                 long num = strtol(token, &endptr, 10);
                 if (endptr == token) {
-                    printf("Failed to convert an argument, skipping!");
+                    printf("Failed to convert an argument, skipping!\n");
                     break;
                 } else {
                     push(&s, num);
                 }
             }
-            printf("%zu\n", peek(&s));
             token = strtok(NULL, " ");
         }
+
+        printf("%zu\n", pop(&s));
     }
 
-    printf("%zu\n", pop(&s));
     stack_free(&s);
     free(line);
     return 0;
